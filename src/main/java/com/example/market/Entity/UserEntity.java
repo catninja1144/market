@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "user")
+@Table(name = "users")
 @SequenceGenerator(name = "user_sql", sequenceName = "user_sql",
         initialValue = 1,allocationSize = 1)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userNo")
@@ -25,8 +25,12 @@ public class UserEntity extends BaseEntity{
     @Column(name="user_sql")
     private Long userNo;
 
+    private String userId;
+    private String password;
+    private String email;
+    private String tel;
 
-    @OneToMany(mappedBy = "marketEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MarketEntity> marketEntityList;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemEntity> itemEntityList;
 
 }
